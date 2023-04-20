@@ -15,7 +15,7 @@ module.exports = {
 		let gif = new AttachmentBuilder(`./gifs/${gifName}.gif`);
 
 		if (!fs.existsSync(gif.attachment)) {
-			const randomGifNames = ['noclue', 'markmidunderstand', 'vega'];
+			const randomGifNames = ['noclue', 'mark', 'vega'];
 			const idx = Math.floor((Math.random() * randomGifNames.length));
 			gifName = randomGifNames[idx];
 			gif = new AttachmentBuilder(`./gifs/${gifName}.gif`);
@@ -27,6 +27,6 @@ module.exports = {
 			.setImage(`attachment://${gifName}.gif`)
 			.setFooter({ text: gifName });
 		const message = await interaction.reply({ embeds: [gifEmbed], files: [gif], fetchReply: true });
-		message.react('😄');
+		message.react('✅');
 	},
 };

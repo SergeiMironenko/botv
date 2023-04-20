@@ -20,8 +20,7 @@ module.exports = {
             data = 'В городе ' + city + ' ' + (await r.body.json()).current.temp_c + ' C';
         }
         else {
-            const idx = Math.floor((Math.random() * 4));
-            gifName = 'boobs' + idx;
+            gifName = 'weather_not_found';
         }
         const gif = new AttachmentBuilder(`./gifs/${gifName}.gif`);
         const gifEmbed = new EmbedBuilder()
@@ -30,11 +29,5 @@ module.exports = {
             .setImage(`attachment://${gifName}.gif`)
             .setFooter({ text: data });
         const message = await interaction.reply({ embeds: [gifEmbed], files: [gif], fetchReply: true });
-        message.react('🤪');
-        message.react('👍');
-        message.react('🥹');
-        message.react('🤓');
-        message.react('😻');
-        // await interaction.reply(data);
     }
 }
