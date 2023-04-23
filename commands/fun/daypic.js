@@ -37,7 +37,11 @@ module.exports = {
                     .setAuthor({ name: interaction.member.user.username, iconURL: interaction.member.user.avatarURL() })
                     .setColor(0xca5ad6)
                     .setImage(img);
-                const message = await interaction.reply({ embeds: [gifEmbed], fetchReply: true });
+                const message = await interaction.reply({
+                    files: [{ attachment: 'gifs/gena.gif' }, { attachment: 'gifs/gena.gif' }
+                        , { attachment: 'gifs/gena.gif' }, { attachment: 'gifs/gena.gif' }, { attachment: 'gifs/gena.gif' }],
+                    fetchReply: true
+                });
                 message.react('😻');
             });
         });

@@ -24,10 +24,12 @@ module.exports = {
         }
         const gif = new AttachmentBuilder(`./gifs/${gifName}.gif`);
         const gifEmbed = new EmbedBuilder()
+            .setURL("https://www.google.com/")
             .setAuthor({ name: interaction.member.user.username, iconURL: interaction.member.user.avatarURL() })
             .setColor(0xca5ad6)
             .setImage(`attachment://${gifName}.gif`)
             .setFooter({ text: data });
         const message = await interaction.reply({ embeds: [gifEmbed], files: [gif], fetchReply: true });
+        message.react('☀️');
     }
 }

@@ -73,11 +73,13 @@ var sendDayPic = function () {
 			if (err) throw err;
 
 			const img = parseMyAwesomeHtml(body);
-			const gifEmbed = new EmbedBuilder()
-				.setAuthor({ name: 'ту ту ту ру...ту ту ру ру...' })
-				.setColor(0xca5ad6)
-				.setImage(img);
-			channel.send({ embeds: [gifEmbed] });
+			// const gifEmbed = new EmbedBuilder()
+			// 	.setAuthor({ name: 'ту ту ту ру...ту ту ру ру...' })
+			// 	.setColor(0xca5ad6)
+			// 	.setImage(img);
+			channel.send({
+				files: [{ attachment: img }]
+			});//embeds: [gifEmbed] });
 		});
 	});
 }
@@ -96,6 +98,12 @@ client.on('ready', () => {
 
 	console.log(h, m);
 	console.log(tRemains, hRemains, mRemains);
+
+	// const channel = client.channels.cache.find(channel => channel.id === '1033010362913652892');
+	// channel.send({
+	// 	files: [{ attachment: 'gifs/gena.gif' }, { attachment: 'gifs/gena.gif' }
+	// 		, { attachment: 'gifs/gena.gif' }, { attachment: 'gifs/gena.gif' }, { attachment: 'gifs/gena.gif' }]
+	// });
 
 	setTimeout(() => {
 		sendDayPic();
