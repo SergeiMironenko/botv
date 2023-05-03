@@ -89,7 +89,6 @@ client.on('ready', () => {
 	// Время для пейзажей
 	const hTarget = (10 + 7) % 24;
 	const mTarget = 0;
-	37
 	const tRemains = (hTarget * 60 + mTarget - (h * 60 + m) + 24 * 60) % (24 * 60);
 	const hRemains = Math.floor(tRemains / 60);
 	const mRemains = tRemains % 60;
@@ -110,13 +109,13 @@ client.on('ready', () => {
 	// Пейзажи раз в день
 	setTimeout(() => {
 		sendImgFromGoodfon('https://www.goodfon.ru/catalog/landscapes/', '1033010362913652892', 4);
-		setInterval(() => { sendImgFromGoodfon() }, 1000 * 60 * 60 * 24);
+		setInterval(() => { sendImgFromGoodfon('https://www.goodfon.ru/catalog/landscapes/', '1033010362913652892', 4) }, 1000 * 60 * 60 * 24);
 	}, 1000 * 60 * mRemains + 1000 * 60 * 60 * hRemains);
 
 	// Девушки раз в неделю
 	setTimeout(() => {
 		sendImgFromGoodfon('https://www.goodfon.ru/catalog/girls/', '1033010362913652892', 3);
-		setInterval(() => { sendImgFromGoodfon() }, 1000 * 60 * 60 * 24 * 7);
+		setInterval(() => { sendImgFromGoodfon('https://www.goodfon.ru/catalog/girls/', '1033010362913652892', 3) }, 1000 * 60 * 60 * 24 * 7);
 	}, 1000 * 60 * mRemains2 + 1000 * 60 * 60 * hRemains2 + 1000 * 60 * 60 * 24 * dRemains2);
 });
 
