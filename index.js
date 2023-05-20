@@ -80,32 +80,35 @@ async function sendImgFromGoodfon(url, channelId, n) {
 	channel.send({ files: files });
 }
 
-async function sendImgFromWallsCloud(url, channelId, n) {
+async function plattenbauten(url, channelId, n) {
 	let files = [];
 	const channel = client.channels.cache.find(channel => channel.id === channelId);
 	const res = await request(url);
-	const body = await res.body.text();
+	console.log(res)
+	// const body = await res.body.text();
 
-	const dom = new JSDOM(body);
-	const elements = dom.window.document
-		.querySelectorAll('.item');
+	// const dom = new JSDOM(body);
+	// const elements = dom.window.document
+	// .querySelector('.side_bar_nav_wrap')
 
-	for (let i = 0; i < n; i++) {
-		const url2 = elements[i]
-			.querySelector('a')
-			.getAttribute('href');
-		const res2 = await request(url2);
-		const body2 = await res2.body.text();
+	// for (let i = 0; i < n; i++) {
+	// 	const url2 = elements[i]
+	// 		.querySelector('img');
+	// 	// const res2 = await request(url2);
+	// 	// const body2 = await res2.body.text();
+	// 	console.log(url2);
+	// }
 
-		const dom2 = new JSDOM(body2);
-		const img = dom2.window.document
-			.querySelector('.wallpaper-preview')
-			.querySelector('img')
-			.getAttribute('src');
-		files.push({ attachment: img });
-	}
+	// 	const dom2 = new JSDOM(body2);
+	// 	const img = dom2.window.document
+	// 		.querySelector('.wallpaper-preview')
+	// 		.querySelector('img')
+	// 		.getAttribute('src');
+	// 	files.push({ attachment: img });
+	// }
 
-	channel.send({ files: files });
+	// console.log(elements, elements?.length);
+	// channel.send({ files: files });
 }
 
 client.on('ready', () => {
@@ -132,50 +135,38 @@ client.on('ready', () => {
 	const hRemains2 = Math.floor(tRemains2 / 60);
 	const mRemains2 = tRemains2 % 60;
 
-	// Время для пейзажей 2
+	// Панельки
 	const hTarget3 = (21 + 0) % 24;
 	const mTarget3 = 0;
 	const tRemains3 = (hTarget3 * 60 + mTarget3 - (h * 60 + m) + 24 * 60) % (24 * 60);
 	const hRemains3 = Math.floor(tRemains3 / 60);
 	const mRemains3 = tRemains3 % 60;
 
-	// Космос
-	const hTarget4 = (22 + 0) % 24;
-	const mTarget4 = 25;
-	const tRemains4 = (hTarget4 * 60 + mTarget4 - (h * 60 + m) + 24 * 60) % (24 * 60);
-	const hRemains4 = Math.floor(tRemains4 / 60);
-	const mRemains4 = tRemains4 % 60;
-
-	console.log(hRemains4, mRemains4);
-
 	// 1033010362913652892 - главный канал
 	// 1090544337907093546 - тестовый канал
 	const mainChannel = true;
 	const id = mainChannel ? '1033010362913652892' : '1090544337907093546';
 
-	// Пейзажи раз в день
-	setTimeout(() => {
-		sendImgFromGoodfon('https://www.goodfon.ru/catalog/landscapes/', id, 4);
-		setInterval(() => { sendImgFromGoodfon('https://www.goodfon.ru/catalog/landscapes/', id, 4) }, 1000 * 60 * 60 * 24);
-	}, 1000 * 60 * mRemains + 1000 * 60 * 60 * hRemains);
-
-	// // Девушки два раза в неделю
-	setTimeout(() => {
-		if (d == 6 || d == 0) sendImgFromGoodfon('https://www.goodfon.ru/catalog/girls/', id, 3);
-		setInterval(() => { if (d == 6 || d == 0) sendImgFromGoodfon('https://www.goodfon.ru/catalog/girls/', id, 3) }, 1000 * 60 * 60 * 24);
-	}, 1000 * 60 * mRemains2 + 1000 * 60 * 60 * hRemains2);
-
-	// Пейзажи с другого сайта
+	// // Пейзажи раз в день
 	// setTimeout(() => {
-	// 	if (d == 1 || d == 5) sendImgFromWallsCloud('https://wallscloud.net/ru/category/nature', id, 1);
-	// 	setInterval(() => { if (d == 2 || d == 5) sendImgFromWallsCloud('https://wallscloud.net/ru/category/nature', id, 6) }, 1000 * 60 * 60 * 24);
-	// }, 1000 * 60 * mRemains3 + 1000 * 60 * 60 * hRemains3);
+	// 	sendImgFromGoodfon('https://www.goodfon.ru/catalog/landscapes/', id, 4);
+	// 	setInterval(() => { sendImgFromGoodfon('https://www.goodfon.ru/catalog/landscapes/', id, 4) }, 1000 * 60 * 60 * 24);
+	// }, 1000 * 60 * mRemains + 1000 * 60 * 60 * hRemains);
 
-	// Космос
+	// // // Девушки два раза в неделю
 	// setTimeout(() => {
-	// 	sendImgFromWallsCloud('https://wallscloud.net/ru/category/space/', id, 3);
-	// 	setInterval(() => { sendImgFromWallsCloud('https://wallscloud.net/ru/category/space/', id, 3) }, 1000 * 60 * 60 * 24);
-	// }, 1000 * 60 * mRemains4 + 1000 * 60 * 60 * hRemains4);
+	// 	if (d == 6 || d == 0) sendImgFromGoodfon('https://www.goodfon.ru/catalog/girls/', id, 3);
+	// 	setInterval(() => { if (d == 6 || d == 0) sendImgFromGoodfon('https://www.goodfon.ru/catalog/girls/', id, 3) }, 1000 * 60 * 60 * 24);
+	// }, 1000 * 60 * mRemains2 + 1000 * 60 * 60 * hRemains2);
+
+	// Панельки
+	// const adr = false ? 'https://polyhaven.com/' : 'https://vk.com/plattenbauten/';
+	// plattenbauten('https://vk.com/plattenbauten?z=photo-66352011_457301114%2Falbum-66352011_00%2Frev', id, 1);
+	// setTimeout(() => {
+	// 	plattenbauten('https://vk.com/plattenbauten/', id, 1);
+	// 	setInterval(() => { plattenbauten('https://vk.com/plattenbauten/', id, 1) }, 1000 * 60 * 60 * 24);
+	// }, 1000);// * 60 * mRemains3 + 1000 * 60 * 60 * hRemains3);
+
 });
 
 // Log in to Discord with your client's token
